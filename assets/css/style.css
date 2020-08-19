@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 999;
+    color: #fff;
+}

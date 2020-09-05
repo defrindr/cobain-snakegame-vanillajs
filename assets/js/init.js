@@ -1,11 +1,11 @@
 let c = document.getElementById('canvas'),
     ctx = c.getContext('2d'),
-    pointView = document.querySelector('#point'),
+    point_view = document.querySelector('#point'),
     cx = c.width,
     cy = c.height,
-    gameStart = true,
-    foodColor = 'purple',
-    snakeColor = ['white', 'red'],
+    game_start = true,
+    food_color = 'purple',
+    snake_color = ['white', 'red'],
     pz = 15,
     tail = 40,
     speed = 15,
@@ -15,7 +15,7 @@ let c = document.getElementById('canvas'),
         x: 0,
         y: 0
     },
-    storeTo = {
+    store_to = {
         x: 0,
         y: 0
     },
@@ -30,7 +30,7 @@ let c = document.getElementById('canvas'),
     };
 
 window.onload = function () {
-    document.addEventListener('keydown', eventListener);
+    document.addEventListener('keydown', event_listener);
     setInterval(game, 1000 / 15);
 }
 
@@ -39,24 +39,24 @@ function assignValue(destination, x, y) {
     destination['y'] = y;
 }
 
-function swapValue(destination, to, storeTo) {
+function swapValue(destination, to, store_to) {
     switch (destination) {
         case 'stopGame':
-            assignValue(storeTo, to['x'], to['y']);
+            assignValue(store_to, to['x'], to['y']);
             assignValue(to, 0, 0);
-            gameStart = false;
+            game_start = false;
             break;
         case 'runGame':
-            gameStart = true;
-            assignValue(to, storeTo['x'], storeTo['y']);
-            assignValue(storeTo, 0, 0);
+            game_start = true;
+            assignValue(to, store_to['x'], store_to['y']);
+            assignValue(store_to, 0, 0);
             break;
         default:
             break;
     }
 }
 
-function eventListener(ev) {
+function event_listener(ev) {
     switch (ev.key) {
         case 'ArrowUp':
             assignValue(to, 0, -1);
@@ -71,10 +71,10 @@ function eventListener(ev) {
             assignValue(to, 1, 0);
             break;
         case ' ':
-            if (storeTo['x'] == 0 && storeTo['y'] == 0) {
-                swapValue('stopGame', to, storeTo);
+            if (store_to['x'] == 0 && store_to['y'] == 0) {
+                swapValue('stopGame', to, store_to);
             } else {
-                swapValue('runGame', to, storeTo);
+                swapValue('runGame', to, store_to);
             }
             break;
         default:
@@ -86,17 +86,17 @@ function snakeSpeed() {
     snake['x'] += (to['x'] * speed);
     snake['y'] += (to['y'] * speed);
 
-    marginTopLeft = 0 - pz;
-    marginBottomRight = cx + pz;
+    let margin_top_left = 0 - pz;
+    let margin_bottom_right = cx + pz;
 
-    if (snake['x'] <= marginTopLeft) {
-        snake['x'] = marginBottomRight;
-    } else if (snake['x'] >= marginBottomRight) {
-        snake['x'] = marginTopLeft;
-    } else if (snake['y'] <= marginTopLeft) {
-        snake['y'] = marginBottomRight;
-    } else if (snake['y'] >= marginBottomRight) {
-        snake['y'] = marginTopLeft;
+    if (snake['x'] <= margin_top_left) {
+        snake['x'] = margin_bottom_right;
+    } else if (snake['x'] >= margin_bottom_right) {
+        snake['x'] = margin_top_left;
+    } else if (snake['y'] <= margin_top_left) {
+        snake['y'] = margin_bottom_right;
+    } else if (snake['y'] >= margin_bottom_right) {
+        snake['y'] = margin_top_left;
     }
 }
 
@@ -104,8 +104,8 @@ function buildSnake() {
     snakeSpeed();
 
     for (let i = 0; i < trail.length; i++) {
-        colorNumber = i % snakeColor.length;
-        ctx.fillStyle = snakeColor[colorNumber];
+        let number_of_color = i % snake_color.length;
+        ctx.fillStyle = snake_color[number_of_color];
         ctx.fillRect(trail[i].x, trail[i].y, pz - 1, pz - 1);
     }
 
@@ -130,12 +130,12 @@ function foodCollition() {
 
 function getRandomize(c) {
     let val = Math.random() * c;
-    let defaultNumber = pz * 2;
+    let default_number = pz * 2;
 
-    if (val < defaultNumber) {
-        val = defaultNumber;
+    if (val < default_number) {
+        val = default_number;
     } else if (val > c) {
-        val = c - defaultNumber;
+        val = c - default_number;
     }
 
     return val;
@@ -150,7 +150,7 @@ function checkFoodReady() {
 }
 
 function getFood() {
-    ctx.fillStyle = 'purple';
+    ctx.fillStyle = food_color;
     ctx.fillRect(food['x'], food['y'], pz, pz);
 
     if (food['ready']) {
@@ -167,7 +167,7 @@ function clearCanvas() {
 }
 
 function updatePoint() {
-    pointView.innerHTML = point;
+    point_view.innerHTML = point;
 }
 
 function game() {

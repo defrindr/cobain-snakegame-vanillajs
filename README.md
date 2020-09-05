@@ -15,4 +15,4 @@ Masih banyak kekurangannya. Cuma Untuk latihan saya, agar lebih mendalami javasc
 
 ## Preview
 
-<img src="./assets/images/screenshot.png">
+<img src="./assets/images/screenshot.png" style="width=50vw;margin:0 auto;display:block">

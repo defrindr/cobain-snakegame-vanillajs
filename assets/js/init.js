@@ -71,11 +71,8 @@ function event_listener(ev) {
             assignValue(to, 1, 0);
             break;
         case ' ':
-            if (store_to['x'] == 0 && store_to['y'] == 0) {
-                swapValue('stopGame', to, store_to);
-            } else {
-                swapValue('runGame', to, store_to);
-            }
+            if (store_to['x'] == 0 && store_to['y'] == 0) swapValue('stopGame', to, store_to);
+            else swapValue('runGame', to, store_to);
             break;
         default:
             break;
@@ -89,15 +86,10 @@ function snakeSpeed() {
     let margin_top_left = 0 - pz;
     let margin_bottom_right = cx + pz;
 
-    if (snake['x'] <= margin_top_left) {
-        snake['x'] = margin_bottom_right;
-    } else if (snake['x'] >= margin_bottom_right) {
-        snake['x'] = margin_top_left;
-    } else if (snake['y'] <= margin_top_left) {
-        snake['y'] = margin_bottom_right;
-    } else if (snake['y'] >= margin_bottom_right) {
-        snake['y'] = margin_top_left;
-    }
+    if (snake['x'] <= margin_top_left) snake['x'] = margin_bottom_right;
+    else if (snake['x'] >= margin_bottom_right) snake['x'] = margin_top_left;
+    else if (snake['y'] <= margin_top_left) snake['y'] = margin_bottom_right;
+    else if (snake['y'] >= margin_bottom_right) snake['y'] = margin_top_left;
 }
 
 function buildSnake() {
@@ -114,9 +106,7 @@ function buildSnake() {
         y: snake['y']
     });
 
-    while (trail.length > tail) {
-        trail.shift();
-    }
+    while (trail.length > tail) trail.shift();
 }
 
 function foodCollition() {
@@ -132,11 +122,8 @@ function getRandomize(c) {
     let val = Math.random() * c;
     let default_number = pz * 2;
 
-    if (val < default_number) {
-        val = default_number;
-    } else if (val > c) {
-        val = c - default_number;
-    }
+    if (val < default_number) val = default_number;
+    else if (val > c) val = c - default_number;
 
     return val;
 }
@@ -153,11 +140,8 @@ function getFood() {
     ctx.fillStyle = food_color;
     ctx.fillRect(food['x'], food['y'], pz, pz);
 
-    if (food['ready']) {
-        foodCollition();
-    } else {
-        checkFoodReady();
-    }
+    if (food['ready']) foodCollition();
+    else checkFoodReady();
 }
 
 function clearCanvas() {

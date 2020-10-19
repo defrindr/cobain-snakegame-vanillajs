@@ -57,18 +57,23 @@ function swapValue(destination, to, store_to) {
 }
 
 function event_listener(ev) {
+    console.log(ev.key);
     switch (ev.key) {
         case 'ArrowUp':
-            assignValue(to, 0, -1);
+            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, -1);
+            if(to['x'] != 0 && to['y'] != 1) assignValue(to, 0, -1);
             break;
         case 'ArrowDown':
-            assignValue(to, 0, 1);
+            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, 1);
+            if(to['x'] != 0 && to['y'] != -1) assignValue(to, 0, 1);
             break;
         case 'ArrowLeft':
-            assignValue(to, -1, 0);
+            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, -1, 0);
+            if(to['x'] != 1 && to['y'] != 0) assignValue(to, -1, 0);
             break;
         case 'ArrowRight':
-            assignValue(to, 1, 0);
+            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 1, 0);
+            if(to['x'] != -1 && to['y'] != 0) assignValue(to, 1, 0);
             break;
         case ' ':
             if (store_to['x'] == 0 && store_to['y'] == 0) swapValue('stopGame', to, store_to);

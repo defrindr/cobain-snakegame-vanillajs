@@ -7,7 +7,7 @@ let c = document.getElementById('canvas'),
     food_color = 'purple',
     snake_color = ['white', 'red'],
     pz = 15,
-    tail = 40,
+    tail = 15,
     speed = 15,
     point = 0,
     trail = [],
@@ -59,20 +59,20 @@ function swapValue(destination, to, store_to) {
 function event_listener(ev) {
     switch (ev.key) {
         case 'ArrowUp':
-            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, -1);
-            if(to['x'] != 0 && to['y'] != 1) assignValue(to, 0, -1);
+            if (to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, -1);
+            if (to['x'] != 0 && to['y'] != 1) assignValue(to, 0, -1);
             break;
         case 'ArrowDown':
-            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, 1);
-            if(to['x'] != 0 && to['y'] != -1) assignValue(to, 0, 1);
+            if (to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, 1);
+            if (to['x'] != 0 && to['y'] != -1) assignValue(to, 0, 1);
             break;
         case 'ArrowLeft':
-            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, -1, 0);
-            if(to['x'] != 1 && to['y'] != 0) assignValue(to, -1, 0);
+            if (to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, -1, 0);
+            if (to['x'] != 1 && to['y'] != 0) assignValue(to, -1, 0);
             break;
         case 'ArrowRight':
-            if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 1, 0);
-            if(to['x'] != -1 && to['y'] != 0) assignValue(to, 1, 0);
+            if (to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 1, 0);
+            if (to['x'] != -1 && to['y'] != 0) assignValue(to, 1, 0);
             break;
         case ' ':
             if (store_to['x'] == 0 && store_to['y'] == 0) swapValue('stopGame', to, store_to);

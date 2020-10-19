@@ -57,7 +57,6 @@ function swapValue(destination, to, store_to) {
 }
 
 function event_listener(ev) {
-    console.log(ev.key);
     switch (ev.key) {
         case 'ArrowUp':
             if(to['x'] == 0 && to['y'] == 0 && game_start) assignValue(to, 0, -1);
